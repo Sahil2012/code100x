@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo fetch</title>
+
+    <script>
+        let timer;
+
+        async function onDone() {
+
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                calculateIntrest();
+            },1000);
+        }
+
+        async function calculateIntrest() {
+            console.log("inside");
+            let principle = document.getElementById('principle').value;
+            let intrest = document.getElementById('intrest').value;
+            let time = document.getElementById('time').value;
+
+            let answer = await fetch(`https://sum-server.100xdevs.com/interest?principal=${principle}&rate=${intrest}&time=${time}`);
+            console.log(answer);
+            let ans = await answer.json();
+            console.log(ans);
+            document.getElementById('answer').innerHTML = `total amount to be paid is ${ans.total} <br /> intrest amount is ${ans.interest}`;
+        }
+    </script>
+</head>
+<body>
+    
+    <div>
+        <span>Principle amount : </span>
+        <input id="principle" type="number" title="principle"/>
+        <br />
+        <span>Intrest Percentage : </span>
+        <input id="intrest" type="number" title="intrest"/>
+        <br />
+        <span>Time in years : </span>
+        <input oninput="onDone()" id="time" type="number" title="time"/>
+    </div>
+
+    <div id="answer">
+
+    </div>
+</body>
+</html>
