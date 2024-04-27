@@ -29,6 +29,7 @@ router.post('/courses/:courseId', userMiddleware, (req, res) => {
 
 router.get('/purchasedCourses', userMiddleware, (req, res) => {
     // Implement fetching purchased courses logic
+    res.send('success');
 });
 
 module.exports = router

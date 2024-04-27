@@ -1,29 +1,24 @@
 // Middleware for handling auth
 
-const z = require('zod');
+const {Admin} = require("../db/index");
 
-const admin_schema = z.object({
-    username:z.string().email(),
-    password:z.string().min(8)
-});
 
-function adminMiddleware(req, res, next) {
+async function adminMiddleware(req, res, next) {
     // Implement admin auth logic
     // You need to check the headers and validate the admin from the admin DB. Check readme for the exact headers to be expected
-}
+    const username = req.headers.username;
+    const password = req.headers.password;
 
-const checkInputSign = (req,res,next) => {
+    const savedAdmin = await Admin.findOne({username : username});
 
-    const _body = req.body;
-
-    try {
-        admin_schema.parse(_body);
+    if(savedAdmin && savedAdmin.password === password) {
         next();
-    }catch (err) {
-        console.log(err);
-        res.send('Invalid request body');
+        return;
     }
 
+    console.log(savedAdmin);
+    res.send("Invalid credentials");
 }
+
 
 module.exports = adminMiddleware;
