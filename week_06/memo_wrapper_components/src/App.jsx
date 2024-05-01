@@ -30,8 +30,8 @@ const App = () => {
     {
       // todos.map(todo => <Todo title={todo.title} description={todo.description} />)
       todos.map(todo => <TodoCard>
-        <Todo title = {todo.title} description = {todo.description} />
-      </TodoCard>)
+         <Todo title = {todo.title} description = {todo.description} />
+       </TodoCard>)
     }
     </div>);
 
