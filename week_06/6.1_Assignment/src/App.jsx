@@ -6,6 +6,10 @@ const App = () => {
 
   const[todos,setTodos] = useState([]);
 
+  /*
+  * in useEffect the first parameter is the function which can not be async
+  * useEffect(async ()=>{} , []) XXXXXXXXXXXXXXXXXXX Not allowed
+  */
   useEffect(() => {
     fetch('https://sum-server.100xdevs.com/todos').then(async (response) => {
       const todoList = await response.json();
