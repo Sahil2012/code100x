@@ -28,9 +28,14 @@ const App = () => {
     </button>
     <br />
     {
-      todos.map(todo => <Todo title={todo.title} description={todo.description} />)
+      // todos.map(todo => <Todo title={todo.title} description={todo.description} />)
+      todos.map(todo => <TodoCard>
+        <Todo title = {todo.title} description = {todo.description} />
+      </TodoCard>)
     }
-  </div>);
+    </div>);
+
+    
 }
 
 const Todo = memo(({title,description}) => {
@@ -38,6 +43,12 @@ const Todo = memo(({title,description}) => {
     <h1>{title}</h1>
     <h5>{description}</h5>
   </div>);
+})
+
+const TodoCard = memo(({children}) => {
+  return (<>
+    {children}
+  </>);
 })
 
 export default App;
