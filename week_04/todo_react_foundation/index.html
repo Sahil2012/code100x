@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+
+    <script>
+        const addTodo = () => {
+            let todoName = document.getElementById('todoName').value;
+            let description = document.getElementById('description').value;
+
+            appendList(todoName,description);
+        }
+
+        const appendList = (name,description) => {
+
+            let newTodoName = document.createElement('div');
+            newTodoName.innerHTML = name;
+            let newTodoDescription = document.createElement('div');
+            newTodoDescription.innerHTML = description;
+            let doneButton = document.createElement('button');
+            doneButton.innerHTML = 'Mark as done';
+            doneButton.setAttribute('onclick','makeitdone()');
+
+            let newTodoContainer = document.createElement('div');
+            
+            newTodoContainer.appendChild(newTodoName);
+            newTodoContainer.appendChild(newTodoDescription);
+            newTodoContainer.appendChild(doneButton);
+
+            console.log(newTodoContainer);
+
+            document.getElementById('taskList').appendChild(newTodoContainer);
+        }
+
+        const makeitdone = () => {
+            console.log('done');
+        }
+    </script>
+</head>
+<body>
+    
+    <div>
+        <div>
+            Todo : 
+            <input id="todoName" type="text" />
+        </div>
+        <div>
+            Description : 
+            <input id="description" type="text" />
+        </div>
+        <div>
+            <button onclick="addTodo()">Add Todo</button>
+        </div>
+    </div>
+    <div id="taskList">
+
+    </div>
+</body>
+</html>

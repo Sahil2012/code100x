@@ -6,6 +6,9 @@
 
 function isAnagram(str1, str2) {
 
+  for(let i = 0; i < str1.length(); i++) {
+    
+  }
 }
 
 module.exports = isAnagram;
