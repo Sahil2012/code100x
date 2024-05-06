@@ -2,7 +2,7 @@ import React from "react";
 
 export default function RevenueCard({ title, warning, amount, orders }) {
     return (
-        <div className="flex flex-col shadow-md rounded p-4 cursor-pointer">
+        <div className="flex flex-col shadow-md rounded p-4 cursor-pointer grow mx-2 bg-[#FFFFFF] shadow-[#1A181E]/25 min-w-[300px] mb-2">
             <div className="text-grey-500 flex items-center mb-3">
                 <div className="mr-1">{title}</div>
                 {warning ? (

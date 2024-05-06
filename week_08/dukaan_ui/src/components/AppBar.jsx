@@ -5,7 +5,7 @@ export default function AppBar() {
   return (
     <div className="shadow-md flex justify-between px-4 py-2">
       <div className="grow flex justify-start items-center">
-        <div className="text-black-500 mr-1 text-sm">Payments</div>
+        <div className="text-black-500 mr-4 text-xl font-semibold">Payouts</div>
         <div className="flex items-center text-xs justify-between">
           <div className="mr-1">
             <svg
