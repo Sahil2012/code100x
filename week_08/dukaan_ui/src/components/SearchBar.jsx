@@ -7,7 +7,7 @@ export default function SearchBar({
 }) {
   return (
     <div className="grow flex justify-center">
-    <div className= {`grow text-grey-500  flex items-center ${bgColor == 'bg-grey-300' ? 'bg-grey-300 border-2' : bgColor}  px-2 rounded-lg`}>
+    <div className= {`grow text-grey-500  flex items-center ${bgColor == 'bg-grey-300' ? 'bg-grey-300 border-2' : bgColor}  px-2 py-2 rounded-lg`}>
       <div className="mr-1">
         <svg
           width="16"
