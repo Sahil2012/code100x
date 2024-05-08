@@ -14,6 +14,12 @@ const signInSchema = z.object({
     password: z.string().min(8)
 })
 
+const updateUserSchema = z.object({
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
+    password: z.string().min(8).optional()
+})
+
 const signUpValidation = (req,res,next) => {
     try {
         signUpSchema.parse(req.body);
@@ -39,7 +45,20 @@ const signInValidation = (req,res,next) => {
     }
 }
 
+const updateUserValidation = (req,res,next) => {
+    try {
+        updateUserSchema.parse(req.body);
+        next();
+    } catch(err) {
+        console.log(err);
+        res.json({
+            "msg" : "Invalid request body."
+        })
+    }
+}
+
 module.exports = {
     signUpValidation,
-    signInValidation
+    signInValidation,
+    updateUserValidation
 }

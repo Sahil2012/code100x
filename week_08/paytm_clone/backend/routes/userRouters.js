@@ -1,10 +1,11 @@
 
 const express = require('express');
-const {signUpValidation,signInValidation} = require('../middlewares/inputBodyVaildation');
+const {signUpValidation,signInValidation, updateUserValidation} = require('../middlewares/inputBodyVaildation');
 const {User} = require('../db/userDB');
 const user = express.Router();
 const jwt = require('jsonwebtoken');
 const {JWT_SECRET} = require('../config');
+const { authRequest } = require('../middlewares/authRequest');
 
 user.post('/signUp',signUpValidation,async (req,res) => {
     
@@ -71,6 +72,27 @@ user.post('/signIn',signInValidation,async (req,res) => {
     
 })
 
+user.use(updateUserValidation);
+user.use(authRequest);
+
+user.put('/updateUserInfo',async (req,res) => {
+    
+    let updateUser = {}
+    if(req.body.firstName) updateUser['name.firstName'] = req.body.firstName;
+    if(req.body.lastName) updateUser['name.lastName'] = req.body.lastName;
+    if(req.body.password) updateUser['password'] = req.body.password;
+
+    console.log(updateUser);    
+
+    const updatedUser = await User.findOneAndUpdate({'username' : req.body.username},{
+        $set : updateUser
+    },{new : true})
+
+    console.log(updatedUser);    
+    res.json({
+        'msg' : req.body.username
+    })
+})
 module.exports = {
     user
 }
