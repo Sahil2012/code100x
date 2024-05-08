@@ -11,7 +11,7 @@ export default function HomePage() {
     <div>
       <TopBar />
       <div className='grid grid-cols-8  bg-black'>
-        <div className='hidden md:visible md:col-span-1  md:flex md:flex-col md:items-center'>
+        <div className='hidden md:visible md:col-span-1  md:flex md:flex-col md:items-center md:h-screen md:overflow-y-auto md:sticky md:top-0'>
           {
             list.map((l) => <MenuButton />)
           }
