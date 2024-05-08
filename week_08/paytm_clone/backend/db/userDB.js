@@ -1,9 +1,10 @@
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://sahilhsgupta7:IjFRKDdTIsP4Bb1t@cluster0.lqdd7xj.mongodb.net/paytm');
+mongoose.connect('');
 
 const userSchema = {
+    username : String,
     name : {
         firstName : String,
         lastName : String
