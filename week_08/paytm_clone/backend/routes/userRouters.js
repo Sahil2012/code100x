@@ -1,7 +1,7 @@
 
 const express = require('express');
 const {signUpValidation,signInValidation, updateUserValidation} = require('../middlewares/inputBodyVaildation');
-const {User} = require('../db/userDB');
+const {User, Bank} = require('../db/userDB');
 const user = express.Router();
 const jwt = require('jsonwebtoken');
 const {JWT_SECRET} = require('../config');
@@ -34,7 +34,12 @@ user.post('/signUp',signUpValidation,async (req,res) => {
 
     try {
         
-        const newUserSaved = await newUser.save()
+        const newUserSaved = await newUser.save();
+        await new Bank({
+            userId : newUserSaved._id,
+            balance : 100000
+        }).save();
+
         res.json({
             "msg": "Welcome to the application."
         })
@@ -93,6 +98,7 @@ user.put('/updateUserInfo',async (req,res) => {
         'msg' : req.body.username
     })
 })
+
 module.exports = {
     user
 }

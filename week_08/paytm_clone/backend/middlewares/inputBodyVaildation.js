@@ -20,6 +20,11 @@ const updateUserSchema = z.object({
     password: z.string().min(8).optional()
 })
 
+const transferSchema = z.object({
+    to : z.string(),
+    amount : z.number()
+});
+
 const signUpValidation = (req,res,next) => {
     try {
         signUpSchema.parse(req.body);
@@ -57,8 +62,21 @@ const updateUserValidation = (req,res,next) => {
     }
 }
 
+const transferBodyValidation = (req,res,next) => {
+    try{
+        transferSchema.parse(req.body);
+        next();
+    } catch(err) {
+        console.log(err);
+        res.json({
+            'msg' : 'Invalid request body.'
+        })
+    }
+}
+
 module.exports = {
     signUpValidation,
     signInValidation,
-    updateUserValidation
+    updateUserValidation,
+    transferBodyValidation
 }
